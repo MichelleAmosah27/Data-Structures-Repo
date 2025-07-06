@@ -1,1 +1,1 @@
-# Data Structure class files, labs and assignments
+# Data Structure class files, labs and assignments.
