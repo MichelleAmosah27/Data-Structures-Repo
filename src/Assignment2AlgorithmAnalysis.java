@@ -1,15 +1,13 @@
 public class Assignment2AlgorithmAnalysis {
 
-    //I created this outer class to contain all the nested classes for lab assignment 2 on gitHub
+    //I created this outer class to contain all the nested classes for lab assignment 2 on github
 
     //===========================================Beginning of Exercise 1===========================================================
 
-    /**
-     * Returns the sum of the integers in given array.
-     */
+    /** Returns the sum of the integers in given array. */
     public static int example1(int[] arr) {//takes integer array
         int n = arr.length, total = 0;//n = length of the array, total is initialized to 0
-        for (int j = 0; j < n; j++)       // loop will run from 0 to n-1 times
+        for (int j=0; j < n; j++)       // loop will run from 0 to n-1 times
             total += arr[j];  //add the index value of the array to total
         return total; // return the value of total
     }
@@ -24,12 +22,10 @@ public class Assignment2AlgorithmAnalysis {
     * */
 
 
-    /**
-     * Returns the sum of the integers with even index in given array.
-     */
+    /** Returns the sum of the integers with even index in given array. */
     public static int example2(int[] arr) { // takes an array integer
         int n = arr.length, total = 0; //n is the length of the array, total is initialized to 0
-        for (int j = 0; j < n; j += 2)    // runs j < 2 and increases by 2
+        for (int j=0; j < n; j += 2)    // runs j < 2 and increases by 2
             total += arr[j]; //add index value of j
         return total; //return the value of j
     }
@@ -41,14 +37,12 @@ public class Assignment2AlgorithmAnalysis {
     - => even half of the array elements are added, time complexity is linear in the size(n) of the array.
     * */
 
-    /**
-     * Returns the sum of the prefix sums of given array.
-     */
+    /** Returns the sum of the prefix sums of given array. */
     public static int example3(int[] arr) { //takes an integer array
         int n = arr.length, total = 0; // n is the length of the array, total is initialized to 0
-        for (int j = 0; j < n; j++) {     // loops from 0 to n-1
+        for (int j=0; j < n; j++) {     // loops from 0 to n-1
             System.out.print(j);
-            for (int k = 0; k <= j; k++) {    // loops from 0 to j
+            for (int k=0; k <= j; k++) {    // loops from 0 to j
                 total += arr[j];
                 System.out.print(k);
             }
@@ -58,16 +52,16 @@ public class Assignment2AlgorithmAnalysis {
     }
 
     /*Big O Analysis
-     * Time complexity of the above code is big O(n^2).
-     * The input size is linearly proportional to the time complexity of the algorithm.
-     * The inner loop will run as many until n - 1. The first loop will run, then the second loop
-     * will run as many times until k <= j => j = n -1
-     * */
+    * Time complexity of the above code is big O(n^2).
+    * The input size is linearly proportional to the time complexity of the algorithm.
+    * The inner loop will run as many until n - 1. The first loop will run, then the second loop
+    * will run as many times until k <= j => j = n -1
+    * */
 
 
     public static int example4(int[] arr) {
         int n = arr.length, prefix = 0, total = 0; // runs constant time - O(1)
-        for (int j = 0; j < n; j++) {     // loop from 0 to n-1
+        for (int j=0; j < n; j++) {     // loop from 0 to n-1
             prefix += arr[j];
             total += prefix;
         }
@@ -83,15 +77,13 @@ public class Assignment2AlgorithmAnalysis {
     * */
 
 
-    /**
-     * Returns the number of times second array stores sum of prefix sums from first.
-     */
+    /** Returns the number of times second array stores sum of prefix sums from first. */
     public static int example5(int[] first, int[] second) { // assume equal-length arrays
         int n = first.length, count = 0;
-        for (int i = 0; i < n; i++) {     // loop from 0 to n-1 => O(n)
+        for (int i=0; i < n; i++) {     // loop from 0 to n-1 => O(n)
             int total = 0;
-            for (int j = 0; j < n; j++)     // loop from 0 to n-1  => O(n)
-                for (int k = 0; k <= j; k++)  // loop from 0 to j  => O(n^2)
+            for (int j=0; j < n; j++)     // loop from 0 to n-1  => O(n)
+                for (int k=0; k <= j; k++)  // loop from 0 to j  => O(n^2)
                     total += first[k];
             if (second[i] == total) count++;
         }
@@ -105,14 +97,26 @@ public class Assignment2AlgorithmAnalysis {
     - Inner loop will run at O(n^2)
     => Time complexity of the algorithm = O(n) * O(n)* O(n^2) = O(n^1+1+2)
     => time complexity = O(n^4) = quadratic time complexity
-    Meaning that time complexity increases at the
     * */
 
     //===========================================End of Exercise 1=================================================================
     //===========================================Beginning of Exercise 2===========================================================
+
+
     //===========================================End of Exercise 2=================================================================
     //===========================================Beginning of Exercise 3===========================================================
     //===========================================End of Exercise 3=================================================================
 
 
+
+
+
+
+
+    //================================================ Test Harness - Main ======================================================
+    public static void main(String[] args){
+
+        int[] numbers = {1,2,3,4,5};
+        example3(numbers);
+    }
 }
