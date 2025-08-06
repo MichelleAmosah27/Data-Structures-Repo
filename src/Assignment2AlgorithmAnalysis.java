@@ -16,7 +16,7 @@ public class Assignment2AlgorithmAnalysis {
     - The loop runs exactly n-1 times
     - f(n) = c (total += arr[j]) => g(n) = 1 --> O(1) big O of constant time(1), this will take the same amount of time regardless of the size of n. It is independent.
       f(n) = c times g(n) ==> f(n) = cg(n) => O(g(n))
-    - Total time complexity is O(n)
+    - Total time complexity is O(1)
 
     Therefore time complexity
     * */
