@@ -52,7 +52,51 @@ public class Assignment2AlgorithmAnalysis {
     }
 
     /*Big O Analysis
-    *
+    * Time complexity of the above code is big O(n^2).
+    * The input size is linearly proportional to the time complexity of the algorithm.
+    * The inner loop will run as many until n - 1. The first loop will run, then the second loop
+    * will run as many times until k <= j => j = n -1
+    * */
+
+
+    public static int example4(int[] arr) {
+        int n = arr.length, prefix = 0, total = 0; // runs constant time - O(1)
+        for (int j=0; j < n; j++) {     // loop from 0 to n-1
+            prefix += arr[j];
+            total += prefix;
+        }
+        return total;
+    }
+
+    /* All the lines of code runs at a constant time complexity.
+    -  However, the entire algorithm will run at n times or (n-1) times.
+    -  This means that the time complexity is O(n)
+    - => time complexity is proportional (linear) to the input size because it will take the same amount of time for the
+    code to run through each element.
+    * */
+
+
+    /** Returns the number of times second array stores sum of prefix sums from first. */
+    public static int example5(int[] first, int[] second) { // assume equal-length arrays
+        int n = first.length, count = 0;
+        for (int i=0; i < n; i++) {     // loop from 0 to n-1 => O(n)
+            int total = 0;
+            for (int j=0; j < n; j++)     // loop from 0 to n-1  => O(n)
+                for (int k=0; k <= j; k++)  // loop from 0 to j  => O(n^2)
+                    total += first[k];
+            if (second[i] == total) count++;
+        }
+        return count;
+    }
+
+
+    /* Big O Analysis:
+    - Outer loop will run at O(n) time complexity
+    - Middle loop will run also at O(n) time complexity
+    - Inner loop will run at O(n^2)
+    => Time complexity of the algorithm = O(n) * O(n)* O(n^2) = O(n^1+1+2)
+    => time complexity = O(n^4) = quadratic time complexity
+    Meaning that time complexity increases at the
     * */
 
     //===========================================End of Exercise 1=================================================================
