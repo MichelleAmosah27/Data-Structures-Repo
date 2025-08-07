@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Assignment2AlgorithmAnalysis {
 
     //I created this outer class to contain all the nested classes for lab assignment 2 on github
@@ -102,21 +104,110 @@ public class Assignment2AlgorithmAnalysis {
     //===========================================End of Exercise 1=================================================================
     //===========================================Beginning of Exercise 2===========================================================
 
+    class PrefixAverage {
 
+        /** Returns an array a such that, for all j, a[j] equals the average of x[0], ..., x[j]. */
+        public static double[] prefixAverage1(double[] x) {
+            int n = x.length;   //n stores the length of x
+            double[] a = new double[n];    // filled with zeros by default and is the length of x
+            for (int j=0; j < n; j++) {
+                double total = 0;            // begin computing x[0] + ... + x[j]
+                for (int i=0; i <= j; i++)
+                    total += x[i];
+                a[j] = total / (j+1);        // record the average
+            }
+            return a;
+        }
+
+        /** Returns an array a such that, for all j, a[j] equals the average of x[0], ..., x[j]. */
+        public static double[] prefixAverage2(double[] x) {
+            int n = x.length;
+            double[] a = new double[n];    // filled with zeros by default
+            double total = 0;              // compute prefix sum as x[0] + x[1] + ...
+            for (int j=0; j < n; j++) {
+                total += x[j];               // update prefix sum to include x[j]
+                a[j] = total / (j+1);        // compute average based on current sum
+            }
+            return a;
+        }
+
+    }
     //===========================================End of Exercise 2=================================================================
+
     //===========================================Beginning of Exercise 3===========================================================
+
+
     //===========================================End of Exercise 3=================================================================
 
+    static class Uniqueness {
 
+        /** Returns true if there are no duplicate elements in the array. */
+        public static boolean unique1(int[] data) {
+            int n = data.length;
+            for (int j=0; j < n-1; j++)
+                for (int k=j+1; k < n; k++)
+                    if (data[j] == data[k])
+                        return false;                    // found duplicate pair
+            return true;                           // if we reach this, elements are unique
+        }
 
+        /** Returns true if there are no duplicate elements in the array. */
+        public static boolean unique2(int[] data) {
+            int n = data.length;
+            int[] temp = Arrays.copyOf(data, n);   // make copy of data
+            Arrays.sort(temp);                     // and sort the copy
+            for (int j=0; j < n-1; j++)
+                if (temp[j] == temp[j+1])            // check neighboring entries
+                    return false;                      // found duplicate pair
+            return true;                           // if we reach this, elements are unique
+        }
 
-
+    }
 
 
     //================================================ Test Harness - Main ======================================================
     public static void main(String[] args){
 
-        int[] numbers = {1,2,3,4,5};
-        example3(numbers);
+        //Experimental analysis - Exercise 2:
+        System.out.println("Experimental Analysis of Exercise 2");
+        double[] numbers = {1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0};
+        Double[] ave1Result = new Double[numbers.length];
+
+        System.out.println("Testing prefixAverage 1...");
+        long startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < numbers.length; i++) {
+
+            ave1Result[i] = PrefixAverage.prefixAverage1(numbers)[i];
+        }
+        long endTime = System.currentTimeMillis();
+        long timeEllapsed = endTime - startTime;
+
+        System.out.println("Prefix Average 1: "+ Arrays.toString(ave1Result)+" took "+ timeEllapsed+" milliseconds");
+
+
+        System.out.println("Testing prefixAverage 2...");
+        long startTime2 = System.currentTimeMillis();
+
+        for (int i = 0; i < numbers.length; i++) {
+
+            ave1Result[i] = PrefixAverage.prefixAverage2(numbers)[i];
+        }
+        long endTime2 = System.currentTimeMillis();
+        long timeElapsed2 = endTime2 - startTime2;
+
+        System.out.println("Prefix Average 2: "+ Arrays.toString(ave1Result)+" took "+ timeElapsed2+" milliseconds");
+        System.out.println();
+
+
+        //Experimental Analysis of Exercise 3
+        System.out.println("Experimental Analysis of Exercise 3");
+
+
+
+
+
+
     }
 }
+
